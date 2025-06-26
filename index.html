@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mensagem do Dia 💌</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 5px #6b4f99;
+      z-index: 1;
+    }
+
+    .message {
+      font-size: 1.6rem;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 25px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      line-height: 1.5;
+      user-select: none;
+      z-index: 1;
+      position: relative;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 15px;
+      font-size: 0.9rem;
+      color: #eee;
+      user-select: none;
+      z-index: 1;
+    }
+
+    .heart {
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .message {
+        font-size: 1.2rem;
+        padding: 20px;
+      }
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(100vh);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Mensagem do Dia 💌</h1>
+  <div class="message" id="message"></div>
+  <footer>Feito de 💜 para você, minha princesa</footer>
+
+  <script>
+    const messages = [
+      "Você é a luz que ilumina meus dias mais cinzentos.",
+      "Cada momento ao seu lado é uma nova felicidade.",
+      "Seu sorriso é o meu motivo favorito para ser feliz.",
+      "Eu amo a maneira como você transforma o simples em especial.",
+      "Obrigado por ser minha inspiração constante.",
+      "Meu coração bate mais forte toda vez que penso em você.",
+      "Você é meu porto seguro, meu lugar feliz.",
+      "Com você, cada dia é uma aventura inesquecível.",
+      "Seu amor me faz querer ser uma pessoa melhor.",
+      "Te amo hoje, amanhã e para sempre.",
+      "Você é meu sonho que virou realidade.",
+      "Estar contigo é a minha definição de paz.",
+      "Nosso amor é a melhor história que já vivi.",
+      "Obrigado por compartilhar sua vida comigo.",
+      "Eu te escolho, sempre e para sempre.",
+      "Juntos somos imbatíveis, nada pode nos separar.",
+      "Seu abraço é o meu lugar favorito no mundo.",
+      "Amo até os seus defeitos porque para mim são qualidades.",
+      "Com você aprendi o verdadeiro significado do amor.",
+      "Cada momento ao seu lado é alegria pura para mim.",
+      "Você tira um sorriso do meu rosto todos os dias.",
+      "Você é a razão do meu viver.",
+      "Você é o amor da minha vida, e tudo o que faço é pensando em te ver sorrir."
+    ];
+
+    function showMessageOfTheDay() {
+      const today = new Date();
+      const start = new Date(today.getFullYear(), 0, 0);
+      const diff = today - start;
+      const oneDay = 1000 * 60 * 60 * 24;
+      const dayOfYear = Math.floor(diff / oneDay);
+      const index = dayOfYear % messages.length;
+      const messageEl = document.getElementById("message");
+      messageEl.textContent = messages[index];
+    }
+
+    showMessageOfTheDay();
+
+    const numHearts = 20;
+    for (let i = 0; i < numHearts; i++) {
+      let heart = document.createElement("div");
+      heart.innerHTML = "❤️";
+      heart.classList.add("heart");
+      heart.style.position = "fixed";
+      heart.style.top = Math.random() * -100 + "px";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      heart.style.opacity = 0.8;
+      heart.style.animation = `fall ${Math.random() * 5 + 5}s linear infinite`;
+      document.body.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
